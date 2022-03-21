@@ -25,7 +25,7 @@ In this iteration, each `part` is an object with values for the course name and 
   }
 ```
 
-I passed all parts as an array of objects, like so: `<Total parts={[part1, part2, part3]} />`. A notable change is use of the `reduce` method to get the sum of exercises from the array of objects passed to the `Total` component from: `{exercises.reduce((prev, current) => prev + current, 0)}` to: `{parts.reduce((acc, obj) => acc + obj.exercises, 0)}`
+I passed all parts as an array of objects, like so: `<Total parts={[part1, part2, part3]} />`. A notable change is the use of the `reduce` method to get the sum of exercises from the array of objects passed to the `Total` component from: `{exercises.reduce((prev, current) => prev + current, 0)}` in the previous exercises to: `{parts.reduce((prev, current) => prev + current.exercises, 0)}`
 
 - [x] Place the objects into an array, modify and refactor accordingly
 
