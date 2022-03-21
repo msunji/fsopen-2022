@@ -2,15 +2,21 @@ const Header = ({ course }) => {
   return <h1>{course}</h1>;
 };
 
+const Part = ({ part, exercises }) => {
+  return (
+    <p>
+      {part} {exercises}
+    </p>
+  );
+};
+
 const Content = ({ parts }) => {
   return (
-    <>
+    <div>
       {parts.map(({ part, exercises }) => (
-        <p>
-          {part} {exercises}
-        </p>
+        <Part key={part} part={part} exercises={exercises} />
       ))}
-    </>
+    </div>
   );
 };
 
