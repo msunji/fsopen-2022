@@ -1,3 +1,10 @@
+const Part = ({ name, exercises }) => {
+  return (
+    <p>
+      {name} {exercises}
+    </p>
+  );
+};
 const Content = ({ parts }) => {
   let sumExercises = parts.reduce(
     (prev, current) => prev + current.exercises,
@@ -7,9 +14,7 @@ const Content = ({ parts }) => {
     <>
       <div>
         {parts.map(({ name, exercises, id }) => (
-          <p key={id}>
-            {name} {exercises}
-          </p>
+          <Part key={id} name={name} exercises={exercises} />
         ))}
       </div>
       <p>
