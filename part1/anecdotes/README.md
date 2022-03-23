@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# FS Open 2022 - Part 1 | Anecdotes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Exercise 1.12
 
-## Available Scripts
+- [x] Show a random anecdote when you click on a button
 
-In the project directory, you can run:
+I made an event handler function that first generates a random integer within a set range (number of anecdotes in the `anecdotes` array).
 
-### `yarn start`
+```js
+let randomIndex = Math.floor(Math.random() * anecdotes.length);
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+It then sets `selected` to the randomly generated integer value.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Exercise 1.13
 
-### `yarn test`
+- [x] Expand your app so that you can vote for the displayed anecdote
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I initially started with an object for this, but realised it would look a bit cleaner to just use an array for now. (The app's simple, so it works out fine.).
 
-### `yarn build`
+I created a new piece of state with a zero-filled array set as the initial value. Said array's length is the same as the `anecdotes` array, hence `Array(anecdotes.length).fill(0)`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The `setVotes` function adds the ability to vote for the current anecdote displayed. We pass the value of `selected` as an argument.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Recalling that state shouldn't be mutated directly, we first make a copy of the `points` array with the spread operator. We then increment the element with an index equivalent to the value of `selected` by 1. We then update the state with the new array.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Exercise 1.14
 
-### `yarn eject`
+- [x] Implement the final version of this app that shows the anecdote with the most number of votes. Should there be any ties, it's fine to show just one.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`const mostVotesIndex = points.indexOf(Math.max(...points));` returns the index of the element in the `points` array with the largest value.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I also added a few finishing touches. Though not specified in the exercise instructions, I found that there were a few bits that were a bit repeatitive, so I extracted them into their own components. I ended up with these components:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `Button`: for the "vote" and "next anecdote" buttons. This takes `handleClick` and `text` as props.
+- `Content`: generates a paragraph element that shows an anecdote and the number of votes it has. It takes `anecdote` and `votes` as props.
