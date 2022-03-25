@@ -32,7 +32,7 @@ I used the `reduce` method to do this. Like so:
 let sumExercises = parts.reduce((prev, current) => prev + current.exercises, 0);
 ```
 
-- The initial value is set to zero, so when the callback function gets called, we start with these values: `prev = 0` and `current = { exercises: 3}`. This should return a value of 3. Then `prev = 3` and `current = {exercises: 7}`. This should return a value of 10 (which is the sum of the number of exercises in the Node.js course).
+The initial value is set to zero, so when the callback function gets called, we start with these values: `prev = 0` and `current = { exercises: 3}`. This should return a value of 3. Then `prev = 3` and `current = {exercises: 7}`. This should return a value of 10 (which is the sum of the number of exercises in the Node.js course).
 
 ## Exercise 2.3
 
