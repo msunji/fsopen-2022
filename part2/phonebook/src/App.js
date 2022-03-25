@@ -1,13 +1,17 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import PersonForm from './components/PersonForm';
+import PersonList from './components/PersonList';
 
 const App = () => {
-  const [persons, setPersons] = useState([{
-    name: 'Arto Hellas',
-    number: '012-345-6789',
-    id: 1,
-  }]);
+  const [persons, setPersons] = useState([
+    { name: 'Arto Hellas', number: '040-123456', id: 1 },
+    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
+  ])
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
+  const [filter, setFilter] = useState('');
 
   const handleNewName = (event) => {
     setNewName(event.target.value);
@@ -15,6 +19,10 @@ const App = () => {
 
   const handleNewNum = (event) => {
     setNewNumber(event.target.value);
+  }
+
+  const handleFilter = (event) => {
+    setFilter(event.target.value);
   }
 
   const addPerson = (event) => {
@@ -39,29 +47,20 @@ const App = () => {
     }
   }
 
-  console.log(persons);
   return (
     <div>
       <h2>Phonebook</h2>
-      Filter phonebook by name <input />
+      Filter phonebook by name: <input value={filter} onChange={handleFilter}/>
       <h2>Add a New Phonebook Entry</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newName} onChange={handleNewName} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNewNum} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm 
+        onFormSubmit={addPerson} 
+        name={newName} 
+        handleName={handleNewName} 
+        number={newNumber} 
+        handleNumber={handleNewNum} 
+      />
       <h2>Numbers</h2>
-      <div>
-        <ul>
-          { persons.map(({ name, number, id}) => <li key={id}>{name} {number}</li>)}
-        </ul>
-      </div>
+      <PersonList persons={persons} filter={filter} />
     </div>
   )
 }
