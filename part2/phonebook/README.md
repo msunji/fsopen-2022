@@ -36,3 +36,23 @@ I moved the filter, the form, and the list of people in the phonebook to their o
 ## Exercise 2.11
 
 - [x] Get `json-server` running on Port 3001. Ensure that the server returns the list of people on `localhost:3001/persons`. Fetch data from the server with `axios` with an effect hook.
+
+---
+
+These exercises are related to Part 2d: Altering data in server.
+
+## Exercise 2.15
+
+- [ ] Save the phonebook numbers to a backend server
+
+## Exercise 2.16
+
+- [ ] Extract the code that handles communication with the backend to its own module.
+
+## Exercise 2.17
+
+- [ ] Make it possible for users to delete entries from the phonebook. You can confirm the action from the user with the `window.confirm` method.
+
+## Exercise 2.18
+
+- [ ] Change the functionality so that if a number is added to an _already existing user_, the new number replaces the old number. Recommend using the `PUT` method for this. This function should show a prompt to confirm the action from the user.
