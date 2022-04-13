@@ -7,7 +7,7 @@ const getPersons = () => {
   return res.then((res) => res.data);
 };
 
-/* Update the persons array */
+/* Add a new person to the phonebook */
 const createPerson = (person) => {
   const res = axios.post(endpoint, person);
   return res.then((res) => res.data);
@@ -17,10 +17,17 @@ const deletePerson = (id) => {
   axios.delete(`${endpoint}/${id}`);
 };
 
+/* Update phonebook entry phone number */
+const updatePerson = (id, updatedPerson) => {
+  const res = axios.put(`${endpoint}/${updatedPerson.id}`, updatedPerson);
+  return res.then((res) => res.data);
+};
+
 const phonebook = {
   getPersons,
   createPerson,
   deletePerson,
+  updatePerson,
 };
 
 /* Export module */
