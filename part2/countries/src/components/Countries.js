@@ -9,12 +9,13 @@ const ListItem = ({ country }) => {
         <span>{country.name.common}</span>
         <button onClick={() => setShow(!show)}>show</button>
       </p>
-      {show && <Country data={country} />}
+      {show && <Country data={country} weather={null} />}
     </div>
   );
 };
 
-const Countries = ({ results, handleShow, show }) => {
+const Countries = ({ results, weatherData }) => {
+  console.log(weatherData);
   if (results.length > 10) {
     return (
       <div>
@@ -30,7 +31,7 @@ const Countries = ({ results, handleShow, show }) => {
       </div>
     );
   } else if (results.length === 1) {
-    return <Country data={results[0]} />;
+    return <Country data={results[0]} weatherData={weatherData} />;
   } else {
     return null;
   }
