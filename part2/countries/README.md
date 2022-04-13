@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# FS Open 2022 - Part 2 | Countries
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Exercise 2.12
 
-## Available Scripts
+- [x] In a new app, get country data from <a href="https://restcountries.com">this site</a>. You'll want to get data from the `all` endpoint. The app should now function like so:
 
-In the project directory, you can run:
+1. Type a search query in the search field
+2. Show countries that match the query. If there are over 10 countries that match the query, user is prompted to make their query more specific.
+3. If there are ten or less countries (but more than one), show all country names that match the query
+4. However, if only one country matches the query, then show basic data related to the country (capital and area, flag, languages spoken)
 
-### `yarn start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Country data is made available through the [REST Countries API](https://restcountries.com/). Instead of pulling data on initial render, it pulls country data when the filter input gets filled in. The resulting list of countries (and their data), gets saved to a piece of state, which then gets passed to the `Countries` component.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In the `Countries` component, you'll find that the content rendered depends on the length of the `countries` array. As per instructions, a note asking for a more specific query is shown if the array contains more than 10 countries. If the array shows between 2-10 countries, a list of country names is shown.
 
-### `yarn test`
+If the `countries` array only contains exactly one country, then the app shows more detailed country data.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Exercise 2.13
 
-### `yarn build`
+- [x] When a list of multiple countries is shown, add a button next to the name of each country that when pressed, shows the view (basic data) for that country.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+A button is placed next to each country name, and allows users to show/hide country-specific data. I made a separate component for each list item, so each item could have its own piece of state for showing/hiding country data.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Exercise 2.14
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [x] When showing the data of a single country, show the weather report for the capital of that country.
 
-### `yarn eject`
+When the `countries` array contains one country, the app uses another `useEffect` hook to pull data from [OpenWeather API](https://openweathermap.org/). For a single country, additional data is shown for weather in said country's capital. This covers things like temperature, wind, and also shows a weather icon that describes current weather conditions.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A note: Be sure to indicate units when you do your API call. The standard unit is set to Kelvin, which can be a little alarming to see at first - or at least it was for me.
