@@ -43,16 +43,24 @@ These exercises are related to Part 2d: Altering data in server.
 
 ## Exercise 2.15
 
-- [ ] Save the phonebook numbers to a backend server
+- [x] Save the phonebook numbers to a backend server
 
 ## Exercise 2.16
 
-- [ ] Extract the code that handles communication with the backend to its own module.
+- [x] Extract the code that handles communication with the backend to its own module.
 
 ## Exercise 2.17
 
-- [ ] Make it possible for users to delete entries from the phonebook. You can confirm the action from the user with the `window.confirm` method.
+- [x] Make it possible for users to delete entries from the phonebook. You can confirm the action from the user with the `window.confirm` method.
 
 ## Exercise 2.18
 
-- [ ] Change the functionality so that if a number is added to an _already existing user_, the new number replaces the old number. Recommend using the `PUT` method for this. This function should show a prompt to confirm the action from the user.
+- [x] Change the functionality so that if a number is added to an _already existing user_, the new number replaces the old number. Recommend using the `PUT` method for this. This function should show a prompt to confirm the action from the user.
+
+## Exercise 2.19
+
+- [x] Show a notification that lasts for a few seconds after a successful operation is exectued (person is added, number is changed).
+
+## Exercise 2.20
+
+- [x] Show error messages too. In this case, try deleting one phonebook entry in one browser, and then try changing the same entry's phone number in another browser. An error message should show up, and should be appropriately styled to indicate that something's gone wrong.
