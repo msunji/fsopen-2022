@@ -70,7 +70,7 @@ const App = () => {
         )
       ) {
         phonebook
-          .updatePerson(personName.id, {
+          .updatePerson({
             ...personName,
             number: personObj.number,
           })
