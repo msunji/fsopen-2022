@@ -18,7 +18,7 @@ const del = (id) => {
 };
 
 /* Update phonebook entry phone number */
-const updatePerson = (id, updatedPerson) => {
+const updatePerson = (updatedPerson) => {
   const res = axios.put(`${endpoint}/${updatedPerson.id}`, updatedPerson);
   return res.then((res) => res.data);
 };
