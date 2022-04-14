@@ -107,7 +107,7 @@ const App = () => {
 
   const deletePerson = (id, name) => {
     if (window.confirm(`Delete ${name}?`)) {
-      phonebook.deletePerson(id);
+      phonebook.del(id);
       setPersons(persons.filter((person) => person.id !== id));
     }
     return;
