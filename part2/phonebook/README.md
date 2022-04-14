@@ -83,7 +83,7 @@ I've also made a function `removeMsg()` to handle removing the notification and 
 
 - [x] Show error messages too. In this case, try deleting one phonebook entry in one browser, and then try changing the same entry's phone number in another browser. An error message should show up, and should be appropriately styled to indicate that something's gone wrong.
 
-This is pretty straightforward. I've used conditional class names in the `Notification` component. In this case, should the `error` prop be 'true', then add the `error` class to the component, otherwise, add the `success` class instead.
+I've used conditional class names in the `Notification` component. In this case, should the `error` prop be 'true', then add the `error` class to the component, otherwise, add the `success` class instead.
 
 ---
 
