@@ -13,7 +13,7 @@ const createPerson = (person) => {
   return res.then((res) => res.data);
 };
 
-const deletePerson = (id) => {
+const del = (id) => {
   axios.delete(`${endpoint}/${id}`);
 };
 
@@ -26,7 +26,7 @@ const updatePerson = (id, updatedPerson) => {
 const phonebook = {
   getPersons,
   createPerson,
-  deletePerson,
+  del,
   updatePerson,
 };
 
