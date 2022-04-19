@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const app = express();
 const port = 3001;
 
+app.use(express.static('client'));
 app.use(express.json());
 
 morgan.token('person', (req, res) => {
