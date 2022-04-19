@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
-const port = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(express.static('client'));
 app.use(express.json());
@@ -92,6 +92,6 @@ app.delete('/api/persons/:id', (req, res) => {
   res.status(204).end();
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on PORT ${port}`);
+app.listen(PORT, () => {
+  console.log(`Example app listening on PORT ${PORT}`);
 });
