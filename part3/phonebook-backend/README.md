@@ -62,3 +62,34 @@ app.use(
   )
 );
 ```
+
+## Exercise 3.9
+
+- [x] Make the backend part work with the frontend part of this project. You don't need to implement the functionality to make changes to phone numbers at this point.
+
+Key points here:
+
+- In the frontend part, change the `baseUrl` (the API endpoint) to `/api/persons`
+- Generate your `build` directory first in the frontend project with `npm run build`, then when done, copy it to the backend project root.
+
+I made a really simply npm script for this:
+
+```
+"build-copy": "npm run build && cp -r ./build ../phonebook-backend/client"
+```
+
+In this case, it gets copied over to the backend project as 'client'. Knowing that, we can move on to the next steps.
+
+In the backend project:
+
+- Use the built in `express.static` middleware function to serve static files (like `index.html`). It takes a `root` argument. In this case, it'll take the `client` directory.
+
+At this point, running `npm run dev` and going to `localhost:3001` should show the frontend part of the phonebook project, and should also list phonebook entries. Adding/deleting phonebook entries works fine at this point, but updating numbers won't work yet. This is fine for now.
+
+## Exercise 3.10
+
+- [ ] Deploy the backend to the internet. Test the deployed backedn with a browser and Postman. Create a README.md at the root of your repo and add a link to the online application.
+
+## Exercise 3.11
+
+- [ ] Generate a production build of the frontend part of the project.
