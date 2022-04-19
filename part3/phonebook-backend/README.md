@@ -1,5 +1,7 @@
 # FS Open Part 3 - Exercises 3.1-3.6
 
+Here is a link to the deployed project: https://dry-lake-27756.herokuapp.com/
+
 ## Exercise 3.1
 
 - [x] Implement a Node app that returns a hardcoded list of phonebook entries from the address `http://localhost:3001/api/persons`.
@@ -88,7 +90,7 @@ At this point, running `npm run dev` and going to `localhost:3001` should show t
 
 ## Exercise 3.10
 
-- [ ] Deploy the backend to the internet. Test the deployed backedn with a browser and Postman. Create a README.md at the root of your repo and add a link to the online application.
+- [x] Deploy the backend to the internet. Test the deployed backenf with a browser and Postman. Create a README.md at the root of your repo and add a link to the online application.
 
 ## Exercise 3.11
 
