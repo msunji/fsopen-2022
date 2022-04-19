@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-client": "rm -rf ./build %% cd ../phonebook/ && npm run build && cp -r ./build ../phonebook-backend/client",
+    "deploy": "git push heroku master",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "logs:prod": "heroku logs--tail"
   },
   "author": "Marge",
   "license": "ISC",
