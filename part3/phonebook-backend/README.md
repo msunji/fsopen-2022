@@ -90,8 +90,15 @@ At this point, running `npm run dev` and going to `localhost:3001` should show t
 
 ## Exercise 3.10
 
-- [x] Deploy the backend to the internet. Test the deployed backenf with a browser and Postman. Create a README.md at the root of your repo and add a link to the online application.
+- [x] Deploy the backend to the internet. Test the deployed backend with a browser and Postman. Create a README.md at the root of your repo and add a link to the online application.
 
 ## Exercise 3.11
 
-- [ ] Generate a production build of the frontend part of the project.
+- [x] Generate a production build of the frontend part of the project.
+
+To deploy this project, you'll want to:
+
+- create a `Procfile` in the backend root
+- run `heroku create` in the backend
+  - make sure that your repo's remotes make sense with `git remote -v`. Note that when you run `heroku create` it should automatically set the Heroku Git repo as a remote for your local repository.
+- To deploy it, use `git push heroku [main/master]`. I haven't renamed my master branch to main yet, so `git push heroku master` worked for me.
