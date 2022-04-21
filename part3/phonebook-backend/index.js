@@ -1,23 +1,15 @@
 require('dotenv').config();
 const express = require('express');
-const morgan = require('morgan');
+const logger = require('./middleware/logger');
 const Person = require('./models/person');
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.static('client'));
 app.use(express.json());
-
-morgan.token('person', (req, res) => {
-  return JSON.stringify(req.body);
-});
-
-app.use(
-  morgan(
-    ':method :url :status :res[content-length] - :response-time ms :person'
-  )
-);
+app.use(logger);
 
 // const genId = () => {
 //   return Math.floor(Math.random() * 88);
@@ -38,18 +30,17 @@ app.get('/api/persons', (req, res) => {
   });
 });
 
-app.get('/api/persons/:id', (req, res) => {
+app.get('/api/persons/:id', (req, res, next) => {
   Person.findById(req.params.id)
     .then((person) => {
       if (person) {
-        res.json(note);
+        res.json(person);
       } else {
-        res.status(400).end();
+        res.status(404).end();
       }
     })
     .catch((err) => {
-      console.log(err);
-      res.status(400).send({ error: 'malformatted id' });
+      next(err);
     });
 });
 
@@ -87,20 +78,17 @@ app.post('/api/persons', (req, res) => {
   // res.json(person);
 });
 
-app.delete('/api/persons/:id', (req, res) => {
-  Person.findByIdAndDelete(req.params.id)
+app.delete('/api/persons/:id', (req, res, next) => {
+  Person.findByIdAndRemove(req.params.id)
     .then((res) => {
       res.status(204).end();
     })
     .catch((err) => {
-      console.log(err);
-      res.status(400).send({ error: 'error' });
+      next(err);
     });
-  // const id = Number(req.params.id);
-  // person = persons.filter((person) => person.id !== id);
-  // res.json(person);
-  // res.status(204).end();
 });
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on PORT ${PORT}`);
