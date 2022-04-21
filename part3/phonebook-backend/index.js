@@ -39,14 +39,18 @@ app.get('/api/persons', (req, res) => {
 });
 
 app.get('/api/persons/:id', (req, res) => {
-  Person.findById(req.params.id).then((person) => {
-    res.json(person);
-  });
-  // const id = Number(req.params.id);
-  // const person = persons.find((person) => {
-  //   return person.id === id;
-  // });
-  // res.json(person);
+  Person.findById(req.params.id)
+    .then((person) => {
+      if (person) {
+        res.json(note);
+      } else {
+        res.status(400).end();
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).send({ error: 'malformatted id' });
+    });
 });
 
 app.post('/api/persons', (req, res) => {
@@ -84,10 +88,18 @@ app.post('/api/persons', (req, res) => {
 });
 
 app.delete('/api/persons/:id', (req, res) => {
-  const id = Number(req.params.id);
-  person = persons.filter((person) => person.id !== id);
-  res.json(person);
-  res.status(204).end();
+  Person.findByIdAndDelete(req.params.id)
+    .then((res) => {
+      res.status(204).end();
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).send({ error: 'error' });
+    });
+  // const id = Number(req.params.id);
+  // person = persons.filter((person) => person.id !== id);
+  // res.json(person);
+  // res.status(204).end();
 });
 
 app.listen(PORT, () => {
