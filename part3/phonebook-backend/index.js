@@ -62,23 +62,6 @@ app.post('/api/persons', (req, res, next) => {
       res.json(savedEntry);
     })
     .catch((err) => next(err));
-
-  // const existing = persons.some(
-  //   (entry) => entry.name.toLowerCase() === person.name.toLowerCase()
-  // );
-
-  // if (!person.name || !person.number) {
-  //   return res.status(400).json({
-  //     error: 'Missing name or number',
-  //   });
-  // }
-  // if (existing) {
-  //   return res.status(400).json({
-  //     error: 'Entry already exists in phonebook',
-  //   });
-  // }
-  // person.id = genId();
-  // res.json(person);
 });
 
 app.put('/api/persons/:id', (req, res, next) => {
