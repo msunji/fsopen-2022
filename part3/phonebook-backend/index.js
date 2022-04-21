@@ -15,10 +15,10 @@ app.use(logger);
 //   return Math.floor(Math.random() * 88);
 // };
 
-app.get('/info', (req, res) => {
-  const phonebookLen = persons.length;
+app.get('/info', async (req, res) => {
+  let numDocs = await Person.countDocuments({});
   const time = new Date();
-  const routeText = `<p>Phonebook has info for ${phonebookLen} people. <br />
+  const routeText = `<p>Phonebook has info for ${numDocs} people. <br />
                     ${time}
                     </p>`;
   res.send(routeText);
