@@ -102,3 +102,35 @@ To deploy this project, you'll want to:
 - run `heroku create` in the backend
   - make sure that your repo's remotes make sense with `git remote -v`. Note that when you run `heroku create` it should automatically set the Heroku Git repo as a remote for your local repository.
 - To deploy it, use `git push heroku [main/master]`. I haven't renamed my master branch to main yet, so `git push heroku master` worked for me.
+
+---
+
+The following exercises deal with using MongoDB as a database.
+
+## Exercise 3.12
+
+- [x] Create a `mongo.js` file in the project root. In this file, you'll add functions used for adding entries to the phonebook and listing all the existing entries in the phonebook. You should be able to complete this task through the command line by passing three arguments: `password name number`
+
+## Exercise 3.13
+
+- [x] Change the fetching of all phonebook entries, so that the data is fetched from the database. Check that this works on the frontend. Just like the previous exercises, ensure that you've moved all Mongoose-specific code into a module.
+
+## Exercise 3.14
+
+- [x] Change the backend so that new numbers are saved to the database. Again, ensure that the frontend works after these changes. At this point, the phonebook can have multiple entries for a person with the same name.
+
+## Exercise 3.15
+
+- [x] Change the backend so that deleting phonebook entries is reflected in the database. Verify that the frontend still works after this change has been made.
+
+## Exercise 3.16
+
+- [x] Move the error handling to a new error handler middleware
+
+## Exercise 3.17
+
+- [x] If the user tries to create a new entry for a person whose name already exists in the phonebook, the frontend will try to update the phonenumber of the existing entry by making an HTTP PUT request to the entry's unique URL. Modify the backend so it supports this request. Make sure the frontend works.
+
+## Exercise 3.18
+
+- [x] Update the `api/persons/:id` and `info` routes to use the database, and verify that they work directly with the browser and Postman.
