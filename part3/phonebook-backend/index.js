@@ -44,7 +44,7 @@ app.get('/api/persons/:id', (req, res, next) => {
     });
 });
 
-app.post('/api/persons', (req, res) => {
+app.post('/api/persons', (req, res, next) => {
   const person = req.body;
 
   if (person.name === undefined) {
@@ -56,9 +56,12 @@ app.post('/api/persons', (req, res) => {
     number: person.number,
   });
 
-  entry.save().then((savedEntry) => {
-    res.json(savedEntry);
-  });
+  entry
+    .save()
+    .then((savedEntry) => {
+      res.json(savedEntry);
+    })
+    .catch((err) => next(err));
 
   // const existing = persons.some(
   //   (entry) => entry.name.toLowerCase() === person.name.toLowerCase()
@@ -76,6 +79,23 @@ app.post('/api/persons', (req, res) => {
   // }
   // person.id = genId();
   // res.json(person);
+});
+
+app.put('/api/persons/:id', (req, res, next) => {
+  const person = req.body;
+  if (person.name === undefined) {
+    return res.status(400).json({ error: 'missing content' });
+  }
+  const entry = {
+    name: person.name,
+    number: person.number,
+  };
+
+  Person.findByIdAndUpdate(req.params.id, entry, { new: true })
+    .then((updatedPerson) => {
+      res.json(updatedPerson);
+    })
+    .catch((err) => next(err));
 });
 
 app.delete('/api/persons/:id', (req, res, next) => {
