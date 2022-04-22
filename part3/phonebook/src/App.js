@@ -86,22 +86,42 @@ const App = () => {
             setNewNumber('');
           })
           .catch((err) => {
-            setMsg(
-              `It looks like ${personName.name}'s already been removed from the phonebook.`
-            );
+            console.log(err.response.data);
+            setMsg(`${err.response.data}.`);
             setErr(true);
             removeMsg();
           });
       }
       return;
     } else {
-      phonebook.createPerson(personObj).then((newPerson) => {
-        setPersons(persons.concat(newPerson));
-        setMsg(`Successfully added ${newPerson.name}`);
-        removeMsg();
-        setNewName('');
-        setNewNumber('');
-      });
+      phonebook
+        .createPerson(personObj)
+        .then((newPerson) => {
+          setPersons(persons.concat(newPerson));
+          setMsg(`Successfully added ${newPerson.name}`);
+          removeMsg();
+          setNewName('');
+          setNewNumber('');
+        })
+        .catch((err) => {
+          let {
+            response: {
+              data: { error },
+            },
+          } = err;
+          let errorMsg;
+          if (error.name && error.number) {
+            errorMsg =
+              'Please input a name three letters or longer and a valid phone number.';
+          } else if (error.name) {
+            errorMsg = error.name;
+          } else {
+            errorMsg = error.number;
+          }
+          setMsg(errorMsg);
+          setErr(true);
+          removeMsg();
+        });
     }
   };
 
