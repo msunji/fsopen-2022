@@ -134,3 +134,25 @@ The following exercises deal with using MongoDB as a database.
 ## Exercise 3.18
 
 - [x] Update the `api/persons/:id` and `info` routes to use the database, and verify that they work directly with the browser and Postman.
+
+## Exercise 3.19
+
+- [x] Expand the validation so that the name stored in the database is at least three characters long. You'll need to work on the frontend so it displays some sort of error message when a validation error occurs. Use `catch` blocks to implement error handling accordingly.
+
+## Exercise 3.20
+
+- [x] Add validation to your phonebook application. Make sure that phone numbers are of the correct form (you'll use a custom validator for this). A phone number must be:
+  - length of 8 or more
+  - consists of two parts separated by '-' like: 09-123456 or 040-123456. Numbers like 1234456 or 1-2324456 are invalid.
+
+**Additional Note:** If an HTTP POST request tries to add a name that is already in the phonebook, the server must respond with an appropriate status code and error message.
+
+## Exercise 3.21
+
+- [ ] Generate a new full stack version of the application.
+  - Create a new production build of the frontend and copy it to the backend.
+  - Verify that everything works locally with `http://localhost:3001`. Push the latest version to Heroku and verify that everything works there as well.
+
+## Exercise 3.22
+
+- [ ] Add ESLint to application and fix all the warnings.
