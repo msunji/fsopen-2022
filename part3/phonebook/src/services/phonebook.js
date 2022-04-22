@@ -1,5 +1,5 @@
 import axios from 'axios';
-const endpoint = '/api/persons';
+const endpoint = 'http://localhost:3001/api/persons';
 
 /* Get all entries in the persons array */
 const getPersons = () => {
