@@ -8,11 +8,15 @@ mongoose
   .connect(url)
   .then((res) => console.log('Connected to MongoDB'))
   .catch((err) => {
-    console.log('error connecting:', err.message);
+    console.log('error connecting:', err);
   });
 
 const personSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true,
+    minLength: [3, 'Name must be at least three letters long.'],
+  },
   number: String,
 });
 
