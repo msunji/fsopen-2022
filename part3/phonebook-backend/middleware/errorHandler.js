@@ -3,8 +3,11 @@ const errorHandler = (err, req, res, next) => {
   if (err.name === 'CastError') {
     return res.status(400).send({ error: 'Malformatted id' });
   } else if (err.name === 'ValidationError') {
-    let { errors } = err;
-    return res.status(400).json({ error: errors.name.message });
+    let allErrors = {};
+    Object.keys(err.errors).forEach((key) => {
+      allErrors[key] = err.errors[key].message;
+    });
+    return res.status(400).json({ error: allErrors });
   }
   next(err);
 };
