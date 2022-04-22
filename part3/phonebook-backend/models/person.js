@@ -8,7 +8,7 @@ mongoose
   .connect(url)
   .then((res) => console.log('Connected to MongoDB'))
   .catch((err) => {
-    console.log('error connecting:', err);
+    console.log('error connecting:', err.message);
   });
 
 const personSchema = new mongoose.Schema({
@@ -17,7 +17,17 @@ const personSchema = new mongoose.Schema({
     required: true,
     minLength: [3, 'Name must be at least three letters long.'],
   },
-  number: String,
+  number: {
+    type: String,
+    validate: {
+      validator: function (val) {
+        return /^\d{2,3}[\-]/.test(val);
+      },
+      message: (props) => `${props.value} isn't a valid phone number.`,
+    },
+    required: true,
+    minLength: [8, 'Number needs to be 8 digits or longer.'],
+  },
 });
 
 personSchema.set('toJSON', {
