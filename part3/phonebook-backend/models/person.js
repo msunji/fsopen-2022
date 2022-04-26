@@ -21,6 +21,7 @@ const personSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator: function (val) {
+        //eslint-disable-next-line
         return /^\d{2,3}[\-]/.test(val);
       },
       message: (props) => `${props.value} isn't a valid phone number.`,
