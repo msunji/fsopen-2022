@@ -77,14 +77,12 @@ Key points here:
 I made a really simply npm script for this:
 
 ```
-"build-copy": "npm run build && cp -r ./build ../phonebook-backend/client"
+"build-copy": "npm run build && cp -r ./build ../phonebook-backend"
 ```
-
-In this case, it gets copied over to the backend project as 'client'. Knowing that, we can move on to the next steps.
 
 In the backend project:
 
-- Use the built in `express.static` middleware function to serve static files (like `index.html`). It takes a `root` argument. In this case, it'll take the `client` directory.
+- Use the built in `express.static` middleware function to serve static files (like `index.html`). It takes a `root` argument. In this case, it'll take the `build` directory.
 
 At this point, running `npm run dev` and going to `localhost:3001` should show the frontend part of the phonebook project, and should also list phonebook entries. Adding/deleting phonebook entries works fine at this point, but updating numbers won't work yet. This is fine for now.
 
@@ -111,21 +109,39 @@ The following exercises deal with using MongoDB as a database.
 
 - [x] Create a `mongo.js` file in the project root. In this file, you'll add functions used for adding entries to the phonebook and listing all the existing entries in the phonebook. You should be able to complete this task through the command line by passing three arguments: `password name number`
 
+This is a pretty basic exercise to help you get started with MongoDB and Mongoose. You'll basically use Mongoose to connect to your database. Be sure that you've not hardcoded sensitive information (like your MongoDB password) into your app, so you'll want to use environment variables in this case. (Also, don't forget to gitignore your `.env` file/s).
+
+For this exercise, you basically want to be able to fetch all phonebook entries, as well as add a new entry to the phonebook from the command line. Note that Node lets you access command line arguments with `process.argv`
+
+For the Mongoose part of this exercise, you'll want to make a new Schema for a phonebook entry, and then create a model from the schema definition. At this point, it's rather simple, and you don't need to add any options for validation.
+
 ## Exercise 3.13
 
-- [x] Change the fetching of all phonebook entries, so that the data is fetched from the database. Check that this works on the frontend. Just like the previous exercises, ensure that you've moved all Mongoose-specific code into a module.
+- [x] Change the fetching of all phonebook entries, so that the data is fetched from the database. Check that this works on the frontend. Just like the previous exercises, ensure that you've moved all Mongoose-specific code into a module. Of course, we'll need to import this module in `index.js` to get connected to the database and all.
+
+Now we get back to working on the phonebook backend and frontend bits. You'll also want to move all Mongoose-related code to a separate module. In this case, I've made a directory called `models` in the backend, and I've moved the all the Mongoose-related bits to a file called `person.js`. This is where you'll be connecting to the database, creating the schema and model for a new entry, and so on.
+
+We've used `set` to modify our data first, and this should work on all instances of the models produced with our schema. In this case, we want our `_id` property to be a string, and not an object.
+
+In `index.js` up date the GET request to `/api/persons` with `Person.find()`. By passing `{}` as a parameter, you should be able to get a list of all documents in the phonebook collection. Similarly, you'll want to update the GET request to `/api/persons/:id`. In this case, instead of `find`, you'll want to use `findById` and pass the id as a parameter.
 
 ## Exercise 3.14
 
 - [x] Change the backend so that new numbers are saved to the database. Again, ensure that the frontend works after these changes. At this point, the phonebook can have multiple entries for a person with the same name.
 
+Update the POST request to `/api/persons`. A new phonebook entry object can be generated with the `Person` constructor function `new Person({})`. From here, use the `save` operation and pass the response through a callback function.
+
 ## Exercise 3.15
 
 - [x] Change the backend so that deleting phonebook entries is reflected in the database. Verify that the frontend still works after this change has been made.
 
+Update the DELETE request to `/api/persons/:id` by using `findByIdAndRemove`. Again, pass the id as a parameter here. The `result` callback parameter can be used to check if a resource was actually deleted.
+
 ## Exercise 3.16
 
 - [x] Move the error handling to a new error handler middleware
+
+In a new directory, called `middleware`, I've moved both my logging and error handling to their own respective modules. After that's sorted, they can be imported into `index.js`.
 
 ## Exercise 3.17
 
@@ -135,9 +151,19 @@ The following exercises deal with using MongoDB as a database.
 
 - [x] Update the `api/persons/:id` and `info` routes to use the database, and verify that they work directly with the browser and Postman.
 
+For the `info` route, I've opted to use the `countDocuments` function to get the number of entries in the phonebook collection. The return value is a promise and not a number, so I've opted to use async/await for this to resolve said promise.
+
 ## Exercise 3.19
 
 - [x] Expand the validation so that the name stored in the database is at least three characters long. You'll need to work on the frontend so it displays some sort of error message when a validation error occurs. Use `catch` blocks to implement error handling accordingly.
+
+In `person.js`, you'll want to update your schema definition with validation rules. The rules for the `name` property are as follows:
+
+1. It must be a `String` type
+2. You need to input a name (hence, `required: true`)
+3. The name must be at least 3 letters long.
+
+I've also added custom error messages for the `required` and `minLength` validation rules.
 
 ## Exercise 3.20
 
@@ -147,12 +173,25 @@ The following exercises deal with using MongoDB as a database.
 
 **Additional Note:** If an HTTP POST request tries to add a name that is already in the phonebook, the server must respond with an appropriate status code and error message.
 
+For the phone number field, we'll be taking in `String` type values. The exercise also requires this field to meet a couple other restrictions - a minimum length of 8 and a specific pattern for the number.
+
+The minimum length can easily be validated with `minLength`, but for the pattern, we've gone with a custom validator. To do this, pass a validation function. If the validator function returns falsy (except `undefined`) or throws an error, validation will fail. You can also pass a custom error message. In our case, we'll use the `test` method to see if the value matches a specific pattern.
+
 ## Exercise 3.21
 
-- [ ] Generate a new full stack version of the application.
+- [x] Generate a new full stack version of the application.
+
   - Create a new production build of the frontend and copy it to the backend.
   - Verify that everything works locally with `http://localhost:3001`. Push the latest version to Heroku and verify that everything works there as well.
+
+  Some tips for when things go wrong when you deploy your app to Heroku:
+
+  1. Check to see if you've added your environment vars as config vars on Heroku. You can do this through the command line, or directly through your project settings on Heroku.
+  2. Check your Network Access settings on MongoDB.
+  3. Check [Heroku Status](https://status.heroku.com/).
 
 ## Exercise 3.22
 
 - [x] Add ESLint to application and fix all the warnings.
+
+Pretty straight forward. Install ESLint on the backend and init your ESLint config with `npm init @eslint/config`. This s hould generate a config file in your backend project root. Don't forget to also create an `.eslintignore` file to ignore the `build` directory.
