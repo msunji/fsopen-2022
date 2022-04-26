@@ -1,6 +1,6 @@
 # FS Open Part 3 - Exercises 3.1-3.6
 
-Here is a link to the deployed project: https://powerful-badlands-56429.herokuapp.com/
+Here is a link to the deployed project: https://safe-basin-33971.herokuapp.com/
 
 ## Exercise 3.1
 
