@@ -1,6 +1,6 @@
 # FS Open Part 3 - Exercises 3.1-3.6
 
-Here is a link to the deployed project: https://dry-lake-27756.herokuapp.com/
+Here is a link to the deployed project: https://powerful-badlands-56429.herokuapp.com/
 
 ## Exercise 3.1
 
@@ -155,4 +155,4 @@ The following exercises deal with using MongoDB as a database.
 
 ## Exercise 3.22
 
-- [ ] Add ESLint to application and fix all the warnings.
+- [x] Add ESLint to application and fix all the warnings.
