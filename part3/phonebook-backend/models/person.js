@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const url = process.env.MONGODB_URI;
 
-console.log('connecting to', url);
+// console.log('connecting to', url);
 
 mongoose
   .connect(url)
@@ -14,7 +14,7 @@ mongoose
 const personSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, 'Please include a name.'],
     minLength: [3, 'Name must be at least three letters long.'],
   },
   number: {
@@ -26,7 +26,7 @@ const personSchema = new mongoose.Schema({
       },
       message: (props) => `${props.value} isn't a valid phone number.`,
     },
-    required: true,
+    required: [true, 'Please include a number.'],
     minLength: [8, 'Number needs to be 8 digits or longer.'],
   },
 });
