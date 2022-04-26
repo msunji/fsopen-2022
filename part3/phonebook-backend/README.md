@@ -1,4 +1,4 @@
-# FS Open Part 3 - Exercises 3.1-3.6
+# FS Open Part 3 - Exercises 3.1-3.22
 
 Here is a link to the deployed project: https://safe-basin-33971.herokuapp.com/
 
