@@ -1,5 +1,5 @@
-require('dotenv').config();
 const http = require('http');
+const config = require('./utils/config');
 const { info, error } = require('./utils/logger');
 const express = require('express');
 const app = express();
@@ -7,7 +7,7 @@ const cors = require('cors');
 const Blog = require('./models/blog');
 const mongoose = require('mongoose');
 
-const url = process.env.MONGODB_URI;
+const url = config.MONGODB_URI;
 
 mongoose
   .connect(url)
