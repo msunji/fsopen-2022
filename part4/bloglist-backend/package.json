@@ -4,6 +4,7 @@
   "description": "An exercise for Fullstack Open 2022. This is a simple application that lets users save information about interesting blogs that find on the internet.",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marge C.",
