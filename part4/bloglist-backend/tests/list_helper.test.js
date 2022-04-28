@@ -1,4 +1,4 @@
-const { dummy, totalLikes } = require('../utils/list_helper');
+const listHelper = require('../utils/list_helper');
 
 const listWithOneBlog = [
   {
@@ -65,23 +65,42 @@ const blogs = [
 test('dummy returns one', () => {
   const blogs = [];
 
-  const result = dummy(blogs);
+  const result = listHelper.dummy(blogs);
   expect(result).toBe(1);
 });
 
 describe('total likes', () => {
   test('has no likes if empty', () => {
-    const result = totalLikes([]);
+    const result = listHelper.totalLikes([]);
     expect(result).toBe(0);
   });
 
   test('when list only has one blog, total likes must be equal to the number of likes for that blog', () => {
-    const result = totalLikes(listWithOneBlog);
+    const result = listHelper.totalLikes(listWithOneBlog);
     expect(result).toBe(7);
   });
 
   test('when list contains multiple blogs, total likes must be the sum of all of their likes', () => {
-    const result = totalLikes(blogs);
+    const result = listHelper.totalLikes(blogs);
     expect(result).toBe(36);
+  });
+});
+
+describe('blog with the most number of likes', () => {
+  test('returns nothing if the list of blogs is empty', () => {
+    const result = listHelper.favoriteBlog([]);
+    expect(result).toEqual(null);
+  });
+
+  test('returns blog details of blog in list if given a list with only one blog', () => {
+    const result = listHelper.favoriteBlog(listWithOneBlog);
+    expect(result).toMatchObject(listWithOneBlog[0]);
+  });
+
+  test('returns blog details for blog with most likes in list with more than one blog', () => {
+    const result = listHelper.favoriteBlog(blogs);
+    expect(result.title).toBe('Canonical string reduction');
+    expect(result.author).toBe('Edsger W. Dijkstra');
+    expect(result.likes).toEqual(12);
   });
 });
