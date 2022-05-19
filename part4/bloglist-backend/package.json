@@ -4,10 +4,10 @@
   "description": "An exercise for Fullstack Open 2022. This is a simple application that lets users save information about interesting blogs that find on the internet.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
     "lint": "eslint .",
-    "test": "jest --verbose"
+    "test": "NODE_ENV=test jest --verbose --runInBand"
   },
   "author": "Marge C.",
   "license": "ISC",
