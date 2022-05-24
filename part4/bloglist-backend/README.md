@@ -62,8 +62,8 @@ _Exercises 4.6 and 4.7 make use of the Lodash library_
 
 ## Exercise 4.13
 
-- [ ] Implement a function to delete a single blog post resource. For this, use async/await syntax and follow RESTful conventions when defining the HTTP API. Implement tests for the functionality.
+- [x] Implement a function to delete a single blog post resource. For this, use async/await syntax and follow RESTful conventions when defining the HTTP API. Implement tests for the functionality.
 
 ## Exercise 4.14
 
-- [ ] Implement functionality for updating the information (the number of likes in particular) of an individual blog post. Use async/await. Implement tests for the functionality.
+- [x] Implement functionality for updating the information (the number of likes in particular) of an individual blog post. Use async/await. Implement tests for the functionality.
