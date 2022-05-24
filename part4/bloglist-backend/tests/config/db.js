@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
+const Blog = require('../../models/blog');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const { error } = require('../../utils/logger');
 
 let testDB;
-
-// Get client
-const client = mongoose.connection.getClient();
 
 // Connect to test DB
 const connect = async () => {
@@ -15,10 +13,10 @@ const connect = async () => {
   const testUri = testDB.getUri();
 
   await mongoose.connect(testUri, (err) => {
-    console.log('Connected to test db');
     if (err) {
       error(err);
     }
+    console.log('Connected to test db');
   });
 };
 
