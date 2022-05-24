@@ -124,18 +124,11 @@ describe('PUT /api/blogs/:id', () => {
   });
 
   test('Updates the number of likes for a blog post', async () => {
-    const blog = await Blog.find({
-      title: 'Testing with MongoDB-Memory-Server',
-    });
+    const blog = await Blog.find({});
 
     let blogId = blog[0].id;
 
-    console.log(blogId);
-
     const res = await agent.put(`/api/blogs/${blogId}`).send({ likes: 42 });
-
-    console.log('put results', res.body);
-
     expect(res.body.likes).toBe(42);
   });
 });
