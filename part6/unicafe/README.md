@@ -1,35 +1,36 @@
-# FS Open 2022 - Part 1 | Unicafe
+# Full Stack Open Part 6 - Exercises
 
-## Exercise 1.6
+- Exercises 6.1 & 6.2 expand on the `unicafe` project from Part 1.
+- Exercises 6.3-6.8 expand on the `anecdotes` project from Part 1.
 
-- [x] Implement an app that collects customer feedback - good, neutral, bad. No need to save to localStorage or anything at this point. You'll need to display the total number of feedback collected for each category.
+## Exercises 6.1
 
-## Exercise 1.7
+- [ ] Implement the functionality required by the store. We'll need to save the number of each kind of feedback to the store. Implement the reducer, as well as the tests. In the tests, ensure that the reducer is an immutable function with teh `deep-freeze` library. Also ensure taht the first test passes.
 
-- [x] Add more statistics: total number of collected feedback, average score, percentage of positive feedback
+## Exercises 6.2
 
-## Exercise 1.8
+- [ ] Implement the actual functionality of the application.
 
-- [x] Refactor the application so that statistics are extracted into another component.
+## Exercises 6.3
 
-I moved the calculations for the total (all), average score (average) and percentage of positive feedback (positive) to the `Statistics` component. The component then takes values for `good`, `neutral` and `bad` as props.
+- [ ] Implement the functionality for voting on anecdotes. The amount of votes must be saved to a Redux-store.
 
-## Exercise 1.9
+## Exercises 6.4
 
-- [x] Make it so that the app ONLY shows feedback once it's been gathered.
+- [ ] Implement the functionality for _adding_ new anecdtoes. The form can be uncontrolled for this exercise.
 
-Within the `Statistics` component, using the JS ternary operator, show _No feedback given_ if the `totalFeedback` has a value of zero (no feedback received), otherwise show the values for each statistic.
+## Exercises 6.5
 
-## Exercise 1.10
+- [ ] Make sure the anecdotes are ordered by the number of votes.
 
-- [x] We continue refactoring the app by extracting the following two components: `Button` for defining the feedback buttons and `StatisticLine` for displaying a _single_ statistic
+## Exercises 6.6
 
-The `Button` component takes two props: `handleClick` (for the event handler function) and `text` for the button text.
+- [ ] If you haven't done it yet, separate the creation of action-objects to action-creator-functions and place them in `src/reducers/anecdoteReducer.js`.
 
-Similarly, the `StatisticLine` component also takes two props -- `text` and `value`.
+## Exercises 6.7
 
-## Exercise 1.11
+- [ ] Separate the creation of new anecdotes into its own component called `AnecdoteForm`. Move all logic for creating a new anecdote into this new component.
 
-- [x] Display statistics in an HTML table
+## Exercises 6.8
 
-Change the `div` element containing each statistic into a `table`. The `StatisticLine` component is modified to return a `tr` element instead of a `p` element.
+- [ ] Separate the rendering of the anecdote list into its own component called `AnecdoteList`. Move all logic related to voted for an anecdote to this component.
