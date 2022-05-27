@@ -10,6 +10,10 @@
 
 - [x] Refactor the application into separate modules.
 
+---
+
+The following exercises cover unit testing. For testing, I've used [Jest](https://jestjs.io/).
+
 ## Exercise 4.3
 
 - [x] Define a `dummy` function that receives an array of blog posts as a param and always returns the value 1. Test.
@@ -39,6 +43,12 @@ _Exercises 4.6 and 4.7 make use of the Lodash library_
 ## Exercise 4.7
 
 - [ ] Define a function called `mostBlogs` that receives an array of blogs as a parameter. The function returns whose blog posts have the most likes (in total). The return value should also contain the total number of likes. Again, if there are multiple bloggers, it's fine to return just one.
+
+---
+
+The following exercises cover integration testing with APIs and databases.
+
+For these exercises, I deviated a bit from the examples provided. Instead of making a mock database on Mongo Atlas, I opted to try using [mongodb-memory-server](https://github.com/nodkz/mongodb-memory-server) instead. Admittedly, it took me a bit of some time to really wrap my head around testing and TTD, so this was a bit of a challenge for me to do.
 
 ## Exercise 4.8
 
